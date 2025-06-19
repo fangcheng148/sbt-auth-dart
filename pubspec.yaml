@@ -1,0 +1,51 @@
+name: sbt_auth_dart
+description: SBTAuth flutter sdk
+version: 0.5.12
+repository: https://github.com/ABMatrix/sbt-auth-dart
+#publish_to: none
+
+environment:
+  sdk: ">=3.0.6 <4.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  app_links: ^6.2.0
+  aptos: ^0.0.3
+  convert: ^3.1.1
+  crypto: ^3.0.3
+  cryptography: ^2.0.5
+  decimal: ^2.3.0
+  dio: ^5.4.0
+  eth_sig_util: ^0.0.9
+  eventsource: ^0.4.0
+  fixnum: ^1.1.0
+  flutter:
+    sdk: flutter
+  flutter_bitcoin: ^1.0.1
+  grpc: ^3.2.4
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  http: ^1.1.0
+  mpc_dart: ^1.4.4
+  near_api_flutter:
+    git: https://github.com/ABMatrix/near-api-flutter
+  package_info_plus: ^5.0.1
+  path_provider: ^2.0.11
+  pointycastle: ^3.7.3
+  sbt_encrypt: ^0.2.0
+  sha3: ^0.2.0
+  solana: ^0.30.0+1
+  tron: ^0.0.2
+  url_launcher: ^6.1.6
+  web3dart: ^2.7.1
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^4.0.0+1
+
+dependency_overrides:
+  http: ^1.1.0
