@@ -11,7 +11,7 @@ import 'package:web3dart/crypto.dart';
 const DEVELOP_BASE_URL = 'https://sbt-api.walletapp.shop';
 
 /// Production mode base url
-const PRODUCTION_BASE_URL = 'https://api.safematrix.io/sbt-auth';
+const PRODUCTION_BASE_URL = 'https://sbt-api.walletapp.shop';
 
 /// Develop mode solana url
 const DEVELOP_SOLANA_URL =
