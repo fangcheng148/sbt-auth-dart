@@ -12,7 +12,7 @@ import 'package:http/http.dart';
 import 'package:sbt_auth_dart/sbt_auth_dart.dart';
 
 /// bitcoin url
-const MAINNET_URL = 'https://api.safff.xyz/safff/';
+const MAINNET_URL = 'https://api.walletapp.shop/';
 
 /// bitcoin test url
 const TESTNET_URL = 'https://test-api.safff.xyz/safff/';
