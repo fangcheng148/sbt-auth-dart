@@ -516,6 +516,18 @@ class SbtAuth {
     );
   }
 
+  /// base64 backup
+  Future<void> base64Backup(
+      String password,
+      String code,
+      ) async {
+    final backupInfo = await getBackupData(password);
+    await api.base64Backup(
+      code,
+      backupInfo,
+    );
+  }
+
   /// Logout
   void logout() {
     DBUtil.tokenBox.delete(TOKEN_KEY);
