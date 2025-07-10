@@ -883,11 +883,9 @@ class SbtAuthApi {
 
   /// base64 backup
   Future<void> base64Backup(
-      String authCode,
       Map<String, dynamic> backupInfo,
       ) async {
     final data = {
-      'authCode': authCode,
       'backupInfo': backupInfo,
     };
     final response = await http.post(
