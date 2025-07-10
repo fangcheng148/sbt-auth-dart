@@ -882,7 +882,7 @@ class SbtAuthApi {
   }
 
   /// base64 backup
-  Future<void> base64Backup(
+  Future<String> base64Backup(
       Map<String, dynamic> backupInfo,
       ) async {
     final data = {
@@ -893,7 +893,8 @@ class SbtAuthApi {
       headers: _headers,
       body: jsonEncode(data),
     );
-    _checkResponse(response);
+    final res = _checkResponse(response) as String;
+    return res;
   }
 
   /// One drive batch backup

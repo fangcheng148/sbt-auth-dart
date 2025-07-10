@@ -517,11 +517,11 @@ class SbtAuth {
   }
 
   /// base64 backup
-  Future<void> base64Backup(
+  Future<String> base64Backup(
       String password,
       ) async {
     final backupInfo = await getBackupData(password);
-    await api.base64Backup(
+    return api.base64Backup(
       backupInfo,
     );
   }
