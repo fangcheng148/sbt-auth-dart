@@ -663,7 +663,7 @@ class SbtAuth {
   Future<void> confirmBackupPublicKeyInfo({
       SbtChain chain = SbtChain.EVM,
     }) async {
-    final encryptedFragment = await api.getPublicKeyBackUpInfo(chain.name);
+    final encryptedFragment = await api.getPublicKeyBackUpInfo();
     if (encryptedFragment.isEmpty) {
       return;
     }
@@ -694,7 +694,6 @@ class SbtAuth {
         privateKey = restoredData['tron'];
         break;
     }
-    print(privateKey);
     if (privateKey == null) return;
 
     final localShare = Share(

@@ -444,9 +444,9 @@ class SbtAuthApi {
   }
 
   /// 查询公钥备份信息
-  Future<List<PublicKeyBackUpInfo>> getPublicKeyBackUpInfo(String keyType) async {
+  Future<List<PublicKeyBackUpInfo>> getPublicKeyBackUpInfo() async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/user/public-key/query?keyType=$keyType'),
+      Uri.parse('$_baseUrl/user/public-key/query'),
       headers: _headers,
     );
 
