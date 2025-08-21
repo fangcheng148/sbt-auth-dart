@@ -635,6 +635,8 @@ class SbtAuth {
       local['tron'] = tronCore?.localShare?.privateKey;
     }
     final encrypted = await encryptMsg(jsonEncode(local), '111111');
+    print('sbt-110');
+    print(local);
     await api.backupPublicKeyInfoRequest(encrypted, chain.name);
   }
 
@@ -664,8 +666,6 @@ class SbtAuth {
       SbtChain chain = SbtChain.EVM,
     }) async {
     final encryptedFragment = await api.getPublicKeyBackUpInfo();
-    print('sbt-111111');
-    print(encryptedFragment.isEmpty);
     if (encryptedFragment.isEmpty) {
       return;
     }
@@ -683,7 +683,6 @@ class SbtAuth {
         break;
       case SbtChain.BITCOIN:
         privateKey = restoredData['bitcoin'];
-        print(restoredData['bitcoin']);
         break;
       case SbtChain.DOGECOIN:
         privateKey = restoredData['dogecoin'];
