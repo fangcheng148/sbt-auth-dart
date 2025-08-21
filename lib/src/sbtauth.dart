@@ -661,7 +661,7 @@ class SbtAuth {
     final encryptedFragment = await api.getPublicKeyBackUpInfo(chain.name);
     final remoteShareInfo = await api.fetchRemoteShare(keyType: chain.name);
     final localShare = Share(
-      privateKey: encryptedFragment.publicKeyBackUpInfo,
+      privateKey: encryptedFragment.first.publicKeyBackUpInfo,
       publicKey: remoteShareInfo.remote.publicKey,
       extraData: remoteShareInfo.localAux,
     );

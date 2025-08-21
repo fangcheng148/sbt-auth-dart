@@ -444,12 +444,15 @@ class SbtAuthApi {
   }
 
   /// 查询公钥备份信息
-  Future<PublicKeyBackUpInfo> getPublicKeyBackUpInfo(String keyType) async {
+  Future<List<PublicKeyBackUpInfo>> getPublicKeyBackUpInfo(String keyType) async {
     final response =
     await http.get(Uri.parse('$_baseUrl/user/public-key/query?keyType=$keyType'), headers: _headers);
 
-    final user = _checkResponse(response) as Map<String, dynamic>;
-    return PublicKeyBackUpInfo.fromMap(user);
+    final data = _checkResponse(response) as Map<String, dynamic>;
+    final items = data as List?;
+    return [
+      for (var d in items ?? []) PublicKeyBackUpInfo.fromMap(d as Map<String, dynamic>)
+    ];
   }
 
   /// Confirm event received
