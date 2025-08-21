@@ -656,17 +656,16 @@ class SbtAuth {
       SbtChain chain = SbtChain.EVM,
     }) async {
     final encryptedFragment = await api.getPublicKeyBackUpInfo(chain.name);
+    if (encryptedFragment.isEmpty) {
+      return;
+    }
     final remoteShareInfo = await api.fetchRemoteShare(keyType: chain.name);
     final localShare = Share(
       privateKey: encryptedFragment.first.publicKeyBackUpInfo,
       publicKey: remoteShareInfo.remote.publicKey,
       extraData: remoteShareInfo.localAux,
     );
-    print(encryptedFragment.first.publicKeyBackUpInfo);
-    print(remoteShareInfo.remote.publicKey);
-    print(remoteShareInfo.localAux);
     final core = getCore(chain);
-    print(core);
     final hash = bytesToHex(
       hashMessage(ascii.encode(jsonEncode(localShare.toJson()))),
       include0x: true,
