@@ -629,3 +629,25 @@ class SbtStrategy {
   /// Strategy ID
   String strategyID;
 }
+
+/// 公钥备份信息
+class PublicKeyBackUpInfo {
+  /// PublicKeyBackUpInfo
+  PublicKeyBackUpInfo({
+    required this.publicKeyBackUpInfo,
+    required this.keyType,
+  });
+
+  factory PublicKeyBackUpInfo.fromMap(Map<String, dynamic> map) {
+    return PublicKeyBackUpInfo(
+      publicKeyBackUpInfo: (map['publicKeyBackUpInfo'] ?? '') as String,
+      keyType: (map['keyType'] ?? '') as String,
+    );
+  }
+
+  /// 备份信息
+  String publicKeyBackUpInfo;
+
+  /// Mpc钱包类型
+  String keyType;
+}

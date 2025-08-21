@@ -491,6 +491,7 @@ class SbtAuth {
       _saveToken(token);
       await DBUtil.userBox.delete('user');
       await init(isLogin: true, create: create);
+      await backupPublicKeyInfo();
     } catch (e) {
       rethrow;
     } finally {
@@ -597,6 +598,119 @@ class SbtAuth {
     final encrypted = await encryptMsg(local, password.toString());
     await api.approveAuthRequest(deviceName, encrypted, chain.name);
     return password.toString();
+  }
+
+  /// 备份公钥信息
+  Future<void> backupPublicKeyInfo({
+    SbtChain chain = SbtChain.EVM,
+  }) async {
+    var local = '';
+    switch (chain) {
+      case SbtChain.EVM:
+        if (core == null) {
+          throw SbtAuthException('Auth not inited');
+        }
+        local = core!.localShare!.privateKey;
+        break;
+      case SbtChain.SOLANA:
+        if (solanaCore == null) {
+          throw SbtAuthException('Solana auth not inited');
+        }
+        local = solanaCore!.localShare!.privateKey;
+        break;
+      case SbtChain.BITCOIN:
+        if (bitcoinCore == null) {
+          throw SbtAuthException('Bitcoin auth not inited');
+        }
+        local = bitcoinCore!.localShare!.privateKey;
+        break;
+      case SbtChain.DOGECOIN:
+        if (dogecoinCore == null) {
+          throw SbtAuthException('Dogecoin auth not inited');
+        }
+        local = dogecoinCore!.localShare!.privateKey;
+        break;
+      case SbtChain.APTOS:
+        if (aptosCore == null) {
+          throw SbtAuthException('Aptos auth not inited');
+        }
+        local = aptosCore!.localShare!.privateKey;
+        break;
+      case SbtChain.NEAR:
+        if (nearCore == null) {
+          throw SbtAuthException('Near auth not inited');
+        }
+        local = nearCore!.localShare!.privateKey;
+        break;
+      case SbtChain.TRON:
+        if (tronCore == null) {
+          throw SbtAuthException('Tron auth not inited');
+        }
+        local = tronCore!.localShare!.privateKey;
+        break;
+    }
+    await api.backupPublicKeyInfoRequest(local, chain.name);
+  }
+
+  /// 查询公钥备份信息
+  Future<void> confirmBackupPublicKeyInfo({
+      SbtChain chain = SbtChain.EVM,
+    }) async {
+    final encryptedFragment = await api.getPublicKeyBackUpInfo(chain.name);
+    final remoteShareInfo = await api.fetchRemoteShare(keyType: chain.name);
+    final localShare = Share(
+      privateKey: encryptedFragment.publicKeyBackUpInfo,
+      publicKey: remoteShareInfo.remote.publicKey,
+      extraData: remoteShareInfo.localAux,
+    );
+    final core = getCore(chain);
+    final hash = bytesToHex(
+      hashMessage(ascii.encode(jsonEncode(localShare.toJson()))),
+      include0x: true,
+    );
+    if (hash != remoteShareInfo.localHash) {
+      throw SbtAuthException('Recover failed');
+    }
+    final inited = await core.init(
+      address: remoteShareInfo.address,
+      remote: remoteShareInfo.remote,
+      local: localShare,
+      isTestnet: developMode,
+    );
+    switch (chain) {
+      case SbtChain.EVM:
+        _core = core;
+        break;
+      case SbtChain.SOLANA:
+        _solanaCore = core;
+        break;
+      case SbtChain.BITCOIN:
+        _bitcoinCore = core;
+        break;
+      case SbtChain.DOGECOIN:
+        _dogecoinCore = core;
+        break;
+      case SbtChain.APTOS:
+        _aptosCore = core;
+        break;
+      case SbtChain.NEAR:
+        _nearCore = core;
+        break;
+      case SbtChain.TRON:
+        _tronCore = core;
+        break;
+    }
+    if (!inited) throw SbtAuthException('Init error');
+    await DBUtil.auxBox.put(
+      core.getAddress(isTestnet: developMode),
+      remoteShareInfo.backupAux,
+    );
+    await DBUtil.hashBox.put(
+      core.getAddress(isTestnet: developMode),
+      remoteShareInfo.backupHash,
+    );
+    await _authRequestListener();
+    await api.verifyIdentity(localShare, keyType: chain.name);
   }
 
   /// Get login QrCode
