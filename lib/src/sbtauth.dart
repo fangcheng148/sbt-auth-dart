@@ -491,7 +491,9 @@ class SbtAuth {
       _saveToken(token);
       await DBUtil.userBox.delete('user');
       await init(isLogin: true, create: create);
-      await backupPublicKeyInfo();
+      if (core != null) {
+        await backupPublicKeyInfo();
+      }
     } catch (e) {
       rethrow;
     } finally {
