@@ -669,11 +669,13 @@ class SbtAuth {
     }
     // 解密
     final restoredData = await restorePublicKeyInfo(encryptedFragment.first.publicKeyBackUpInfo, '111111');
+    print('sbt-120');
     print(restoredData);
 
     for (String key in restoredData.keys) {
       String? privateKey;
       SbtChain chain = SbtChain.EVM;
+      print(key);
       switch (key) {
         case 'evm':
           privateKey = restoredData['evm'];
