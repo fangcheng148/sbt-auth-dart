@@ -491,9 +491,6 @@ class SbtAuth {
       _saveToken(token);
       await DBUtil.userBox.delete('user');
       await init(isLogin: true, create: create);
-      if (core != null) {
-        await backupPublicKeyInfo();
-      }
     } catch (e) {
       rethrow;
     } finally {
@@ -665,7 +662,11 @@ class SbtAuth {
       publicKey: remoteShareInfo.remote.publicKey,
       extraData: remoteShareInfo.localAux,
     );
+    print(encryptedFragment.first.publicKeyBackUpInfo);
+    print(remoteShareInfo.remote.publicKey);
+    print(remoteShareInfo.localAux);
     final core = getCore(chain);
+    print(core);
     final hash = bytesToHex(
       hashMessage(ascii.encode(jsonEncode(localShare.toJson()))),
       include0x: true,
