@@ -664,6 +664,8 @@ class SbtAuth {
       SbtChain chain = SbtChain.EVM,
     }) async {
     final encryptedFragment = await api.getPublicKeyBackUpInfo();
+    print('sbt-111111');
+    print(encryptedFragment.isEmpty);
     if (encryptedFragment.isEmpty) {
       return;
     }
