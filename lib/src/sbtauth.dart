@@ -694,6 +694,7 @@ class SbtAuth {
         privateKey = restoredData['tron'];
         break;
     }
+    print(privateKey);
     if (privateKey == null) return;
 
     final localShare = Share(
