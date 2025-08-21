@@ -672,6 +672,7 @@ class SbtAuth {
     final remoteShareInfo = await api.fetchRemoteShare(keyType: chain.name);
     // 解密
     final restoredData = await restorePublicKeyInfo(encryptedFragment.first.publicKeyBackUpInfo, '111111');
+    print(restoredData);
     String? privateKey;
     switch (chain) {
       case SbtChain.EVM:
@@ -682,6 +683,7 @@ class SbtAuth {
         break;
       case SbtChain.BITCOIN:
         privateKey = restoredData['bitcoin'];
+        print(restoredData['bitcoin']);
         break;
       case SbtChain.DOGECOIN:
         privateKey = restoredData['dogecoin'];
