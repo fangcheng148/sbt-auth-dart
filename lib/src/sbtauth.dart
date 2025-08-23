@@ -638,6 +638,14 @@ class SbtAuth {
     await api.backupPublicKeyInfoRequest(encrypted, chain.name);
   }
 
+  // 解密
+  Future<String> decryptInfo(
+      String msg,
+      String password
+      ) async {
+    return decryptMsg(msg, password);
+  }
+
   // 解密并处理备份的公钥信息
   Future<Map<String, String?>> restorePublicKeyInfo(
       String encryptedData,
