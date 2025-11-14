@@ -24,23 +24,23 @@ const _ethSignerMethods = [
 ];
 
 const _ethRpc = {
-  '0x1': 'https://rpc-product.safematrix.io/json-rpc/http/eth',
+  '0x1': 'https://rpc.ankr.com/eth/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   '0x5': 'https://rpc-product.safematrix.io/json-rpc/http/eth_goerli',
   // Sepolia
   '0xaa36a7': 'https://rpc-product.safematrix.io/json-rpc/http/sepolia',
-  '0x38': 'https://rpc-product.safematrix.io/json-rpc/http/bsc',
+  '0x38': 'https://rpc.ankr.com/bsc/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   '0x61': 'https://rpc-product.safematrix.io/json-rpc/http/bsc_chapel',
   // Polygon
-  '0x89': 'https://rpc-product.safematrix.io/json-rpc/http/polygon',
+  '0x89': 'https://rpc.ankr.com/polygon/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   // Polygon Mumbai
   '0x13881': 'https://rpc-product.safematrix.io/json-rpc/http/polygon_mumbai',
   // Filecoin
-  '0x13a': 'https://rpc-product.safematrix.io/json-rpc/http/filecoin_evm',
+  '0x13a': 'https://rpc.ankr.com/filecoin/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   // Filecoin calibration
   '0x4cb2f':
       'https://rpc-product.safematrix.io/json-rpc/http/filecoin_calibration_evm',
   // Avalanche
-  '0xa86a': 'https://rpc-product.safematrix.io/json-rpc/http/avalanche',
+  '0xa86a': 'https://rpc.ankr.com/avalanche/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   // Avalanche Fuji
   '0xa869': 'https://rpc-product.safematrix.io/json-rpc/http/avalanche_fuji',
   // Optimism
@@ -48,7 +48,7 @@ const _ethRpc = {
   // Optimism Goerli
   '0x1a4': 'https://rpc-product.safematrix.io/json-rpc/http/optimism_goerli',
   // Arbitrum
-  '0xa4b1': 'https://rpc-product.safematrix.io/json-rpc/http/arbitrum',
+  '0xa4b1': 'https://rpc.ankr.com/arbitrum/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   // Arbitrum Goerli
   '0x66eed': 'https://rpc-product.safematrix.io/json-rpc/http/arbitrum_goerli',
   // Cronos
@@ -62,7 +62,7 @@ const _ethRpc = {
   // Fantom Testnet
   '0xfa2': 'https://rpc-product.safematrix.io/json-rpc/http/fantom_testnet',
   // ZkSync
-  '0x144': 'https://rpc-product.safematrix.io/json-rpc/http/zksync',
+  '0x144': 'https://rpc.ankr.com/zksync_era/a2a6066b91793df028005a1fe4020bd5377f74e08a9d3958f0c27e74b5a4d71e',
   // ZkSync Testnet
   '0x118': 'https://rpc-product.safematrix.io/json-rpc/http/zksync_testnet',
   // Bool Testnet
@@ -79,6 +79,8 @@ const _ethRpc = {
   '0xe704': 'https://rpc-product.safematrix.io/json-rpc/http/linea_testnet',
   // Linea
   '0xe708': 'https://rpc-product.safematrix.io/json-rpc/http/linea',
+  // POP
+  '0x1c59': 'https://rpc.popchain.ai', // todo fc确定 是否对的
 };
 
 /// develop url
@@ -242,6 +244,7 @@ class SbtAuthProvider {
     '0x2105': 'base',
     '0xe704': 'linea_testnet',
     '0xe708': 'linea',
+    '0x1c59': 'pop',  // todo fc确定 是否对的
   };
 
   void _getNetwork(String chainNetwork) {
