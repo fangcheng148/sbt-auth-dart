@@ -80,7 +80,7 @@ const _ethRpc = {
   // Linea
   '0xe708': 'https://rpc-product.safematrix.io/json-rpc/http/linea',
   // POP
-  '0x117D9': 'https://rpc.popchain.ai', // todo fc确定 是否对的
+  '0x1c59': 'https://rpc.popchain.ai', // todo fc确定 是否对的
 };
 
 /// develop url
@@ -244,7 +244,7 @@ class SbtAuthProvider {
     '0x2105': 'base',
     '0xe704': 'linea_testnet',
     '0xe708': 'linea',
-    '0x117D9': 'pop',  // todo fc确定 是否对的
+    '0x1c59': 'pop',  // todo fc确定 是否对的
   };
 
   void _getNetwork(String chainNetwork) {
